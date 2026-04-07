@@ -28,6 +28,14 @@ Binary: `.build/release/SystemEagleEye`
 
 This creates **`System Eagle Eye.app`** at the repo root and applies `Supporting/Info.plist` (includes `LSUIElement` so the app does not show a Dock icon by default).
 
+## Package as .dmg (optional)
+
+```bash
+./scripts/package_dmg.sh
+```
+
+Runs `package_app.sh`, then builds a compressed disk image **`System-Eagle-Eye-<version>.dmg`** at the repo root. The volume includes the app plus an **Applications** shortcut for drag-and-drop install. Uses only macOS **`hdiutil`** (no extra tools).
+
 ## First launch and security
 
 Unsigned apps may be blocked by Gatekeeper. You can:

@@ -1,5 +1,6 @@
 .build/
 System Eagle Eye.app/
+*.dmg
 .DS_Store
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/

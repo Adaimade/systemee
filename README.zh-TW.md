@@ -28,6 +28,14 @@ swift build -c release
 
 會在專案根目錄產生 **`System Eagle Eye.app`**，並寫入 `Supporting/Info.plist`（含 `LSUIElement`，Dock 不常駐圖示）。
 
+## 打包成 .dmg（選用）
+
+```bash
+./scripts/package_dmg.sh
+```
+
+會先執行 `package_app.sh`，再在專案根目錄產生壓縮映像檔 **`System-Eagle-Eye-<版本號>.dmg`**。映像內含 App 與指向 **應用程式** 資料夾的捷徑，方便拖放安裝。僅使用 macOS 內建 **`hdiutil`**，無需額外工具。
+
 ## 首次執行與安全性
 
 未簽署的 App 可能被 Gatekeeper 擋下。可：

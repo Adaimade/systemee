@@ -13,7 +13,7 @@ struct PreferencesView: View {
     @AppStorage(DisplayPreferences.Keys.cardDisk, store: DisplayPreferences.suite) private var cardDisk = true
 
     @AppStorage(DisplayPreferences.Keys.pollInterval, store: DisplayPreferences.suite) private var pollInterval = 2.0
-    @AppStorage(DisplayPreferences.Keys.uiLanguage, store: DisplayPreferences.suite) private var uiLanguageRaw = AppLanguage.system.storageValue
+    @AppStorage(DisplayPreferences.Keys.uiLanguage, store: DisplayPreferences.suite) private var uiLanguageRaw = AppLanguage.english.storageValue
 
     var body: some View {
         TabView {

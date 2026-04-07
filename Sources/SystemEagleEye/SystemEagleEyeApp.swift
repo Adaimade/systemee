@@ -4,7 +4,7 @@ import SwiftUI
 struct SystemEagleEyeApp: App {
 
     @StateObject private var metrics = SystemMetricsCollector()
-    @AppStorage(DisplayPreferences.Keys.uiLanguage, store: DisplayPreferences.suite) private var uiLanguageRaw = AppLanguage.system.storageValue
+    @AppStorage(DisplayPreferences.Keys.uiLanguage, store: DisplayPreferences.suite) private var uiLanguageRaw = AppLanguage.english.storageValue
 
     init() {
         DisplayPreferences.registerDefaults()

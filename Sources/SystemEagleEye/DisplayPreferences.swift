@@ -23,7 +23,7 @@ enum DisplayPreferences {
             Keys.cardMemory: true,
             Keys.cardDisk: true,
             Keys.pollInterval: 2.0,
-            Keys.uiLanguage: AppLanguage.system.storageValue
+            Keys.uiLanguage: AppLanguage.english.storageValue
         ])
     }
 }

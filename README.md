@@ -1,6 +1,6 @@
 # System Eagle Eye
 
-A lightweight macOS menu bar monitor: CPU, memory, and boot volume free space. Click to open an information card with more detail. **Interface language** (English, Traditional Chinese, or follow the system) is chosen in **Preferences**.
+A lightweight macOS menu bar monitor: CPU, memory, and boot volume free space. Click to open an information card with more detail. **Interface language** defaults to **English**; you can switch to **Traditional Chinese** or **follow the system** in **Preferences**.
 
 **Release: 1.0.0** (see `Supporting/Info.plist`)
 

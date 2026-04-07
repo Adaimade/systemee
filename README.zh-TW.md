@@ -26,7 +26,7 @@ swift build -c release
 ./scripts/package_app.sh
 ```
 
-會在專案根目錄產生 **`System Eagle Eye.app`**，並寫入 `Supporting/Info.plist`（含 `LSUIElement`，Dock 不常駐圖示）。
+會在專案根目錄產生 **`System Eagle Eye.app`**，並寫入 `Supporting/Info.plist`（含 `LSUIElement`，Dock 不常駐圖示）。Finder 圖示使用 **`Supporting/AppIcon.icns`**；若更換主圖 **`Supporting/AppIcon-square.png`**（1024×1024），請執行 `./scripts/build_icns.sh` 重新產生 `.icns`。
 
 ## 打包成 .dmg（選用）
 

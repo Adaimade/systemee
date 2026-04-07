@@ -12,6 +12,9 @@ RES_BUNDLE="$ROOT/.build/release/SystemEagleEye_SystemEagleEye.bundle"
 if [[ -d "$RES_BUNDLE" ]]; then
   cp -R "$RES_BUNDLE" "$APP_NAME/Contents/Resources/"
 fi
+if [[ -f "$ROOT/Supporting/AppIcon.icns" ]]; then
+  cp "$ROOT/Supporting/AppIcon.icns" "$APP_NAME/Contents/Resources/"
+fi
 cp "$ROOT/Supporting/Info.plist" "$APP_NAME/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$APP_NAME/Contents/Info.plist" 2>/dev/null || true
 echo "Created: $ROOT/$APP_NAME"

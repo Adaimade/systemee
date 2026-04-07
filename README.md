@@ -26,7 +26,7 @@ Binary: `.build/release/SystemEagleEye`
 ./scripts/package_app.sh
 ```
 
-This creates **`System Eagle Eye.app`** at the repo root and applies `Supporting/Info.plist` (includes `LSUIElement` so the app does not show a Dock icon by default).
+This creates **`System Eagle Eye.app`** at the repo root and applies `Supporting/Info.plist` (includes `LSUIElement` so the app does not show a Dock icon by default). The bundle icon comes from **`Supporting/AppIcon.icns`** (regenerate from `Supporting/AppIcon-square.png` with `./scripts/build_icns.sh` if you replace the artwork).
 
 ## Package as .dmg (optional)
 

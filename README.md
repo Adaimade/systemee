@@ -39,6 +39,7 @@ swift build -c release
 
 - 數值僅透過本機 Mach／`sysctl`／卷宗 API 讀取，**不連網、不上傳、不蒐集個資**。
 - 偏好設定儲存在本機 `UserDefaults`（suite：`com.systemee.SystemEagleEye`）。
+- **完整隱私權說明（含「僅供學術研究／教育用途」定位）**：請閱讀 [PRIVACY.md](PRIVACY.md)。
 
 ## 推出前快速檢查
 

@@ -1,53 +1,55 @@
 # System Eagle Eye
 
-macOS 選單列系統監看小工具：顯示 CPU、記憶體與啟動卷宗可用空間，點擊可開啟資訊卡查看更多數據。介面為繁體中文。
+A lightweight macOS menu bar monitor: CPU, memory, and boot volume free space. Click to open an information card with more detail. The in-app UI is in **Traditional Chinese**.
 
-**正式版：1.0.0**（見 `Supporting/Info.plist`）
+**Release: 1.0.0** (see `Supporting/Info.plist`)
 
-## 系統需求
+**[Traditional Chinese README → README.zh-TW.md](README.zh-TW.md)**
 
-- macOS **14.0** 或以上
-- Apple Silicon 或 Intel Mac
+## Requirements
 
-## 從原始碼建置
+- macOS **14.0** or later
+- Apple Silicon or Intel Mac
+
+## Build from source
 
 ```bash
 cd systemee
 swift build -c release
 ```
 
-產出執行檔：`.build/release/SystemEagleEye`
+Binary: `.build/release/SystemEagleEye`
 
-## 打包成 .app（建議發佈用）
+## Package as .app (recommended for distribution)
 
 ```bash
 ./scripts/package_app.sh
 ```
 
-會在專案根目錄產生 **`System Eagle Eye.app`**，並寫入 `Supporting/Info.plist`（含 `LSUIElement`，Dock 不常駐圖示）。
+This creates **`System Eagle Eye.app`** at the repo root and applies `Supporting/Info.plist` (includes `LSUIElement` so the app does not show a Dock icon by default).
 
-## 首次執行與安全性
+## First launch and security
 
-未簽署的 App 可能被 Gatekeeper 擋下。可：
+Unsigned apps may be blocked by Gatekeeper. You can:
 
-- 在 Finder **右鍵 → 打開 → 打開**，或  
-- 於終端機執行：`xattr -cr "/路徑/System Eagle Eye.app"`
+- In Finder: **right-click → Open → Open**, or  
+- In Terminal: `xattr -cr "/path/to/System Eagle Eye.app"`
 
-若要對外發佈，建議使用 **Developer ID** 簽署並透過 Apple **公證（notarize）**，使用者即可正常雙擊開啟（請於 Apple Developer 帳號與 Xcode/`notarytool` 流程處理）。
+For public distribution, sign with **Developer ID** and **notarize** via Apple so users can open the app with a double-click (use your Apple Developer account and Xcode / `notarytool`).
 
-## 隱私與資料
+## Privacy and data
 
-- 數值僅透過本機 Mach／`sysctl`／卷宗 API 讀取，**不連網、不上傳、不蒐集個資**。
-- 偏好設定儲存在本機 `UserDefaults`（suite：`com.systemee.SystemEagleEye`）。
-- **完整隱私權說明（含「僅供學術研究／教育用途」定位）**：請閱讀 [PRIVACY.md](PRIVACY.md)。
+- Metrics are read locally via Mach, `sysctl`, and volume APIs only—**no network, no uploads, no personal data collection**.
+- Preferences are stored locally in `UserDefaults` (suite: `com.systemee.SystemEagleEye`).
+- Full notice (including **academic / educational use** framing): see [PRIVACY.md](PRIVACY.md).
 
-## 推出前快速檢查
+## Pre-release checklist
 
-- [ ] `Supporting/Info.plist` 中 `CFBundleShortVersionString`／`CFBundleVersion` 已更新  
-- [ ] 執行 `./scripts/package_app.sh` 並實機開啟測試  
-- [ ] 偏好設定、選單列、資訊卡與結束流程正常  
-- [ ] （選用）完成簽署與公證後再散佈
+- [ ] Bump `CFBundleShortVersionString` / `CFBundleVersion` in `Supporting/Info.plist`
+- [ ] Run `./scripts/package_app.sh` and smoke-test on hardware
+- [ ] Verify preferences, menu bar, info card, and quit flow
+- [ ] (Optional) Sign and notarize before wider distribution
 
-## 授權（開源）
+## License
 
-本專案以 [**MIT License**](LICENSE) 釋出。App 內顯示之設計者資訊與 `Info.plist` 之 `NSHumanReadableCopyright` 可作為署名參考；再散布時請保留 `LICENSE` 與著作權聲明。
+This project is released under the [**MIT License**](LICENSE). In-app design credit and `NSHumanReadableCopyright` in `Info.plist` may be used as attribution references; retain `LICENSE` and copyright notices when redistributing.

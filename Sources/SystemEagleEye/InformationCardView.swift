@@ -4,7 +4,7 @@ import SwiftUI
 struct InformationCardView: View {
     @Environment(\.openSettings) private var openSettings
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @Environment(\.locale) private var locale
+    @Environment(\.appLanguage) private var appLanguage
     @EnvironmentObject private var metrics: SystemMetricsCollector
 
     @AppStorage(DisplayPreferences.Keys.cardCPU, store: DisplayPreferences.suite) private var cardCPU = true
@@ -54,7 +54,7 @@ struct InformationCardView: View {
             Button {
                 openSettings()
             } label: {
-                Text(L10n.string("card.prefs", locale: locale))
+                Text(L10n.string("card.prefs", language: appLanguage))
             }
             .keyboardShortcut(",", modifiers: .command)
         }
@@ -84,7 +84,7 @@ struct InformationCardView: View {
 
     private func metricRow(titleKey: String, value: Double, color: Color) -> some View {
         HStack {
-            Text(L10n.string(titleKey, locale: locale))
+            Text(L10n.string(titleKey, language: appLanguage))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(String(format: "%.2f%%", value))
@@ -96,7 +96,7 @@ struct InformationCardView: View {
 
     private func countRow(labelKey: String, value: Int) -> some View {
         HStack {
-            Text(L10n.string(labelKey, locale: locale))
+            Text(L10n.string(labelKey, language: appLanguage))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(value, format: .number.grouping(.automatic))
@@ -119,7 +119,7 @@ struct InformationCardView: View {
             .layoutPriority(1)
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(L10n.string("card.memory.breakdown", locale: locale))
+                Text(L10n.string("card.memory.breakdown", language: appLanguage))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                 memoryLine("card.memory.app", metrics.memoryAppGB)
@@ -135,7 +135,7 @@ struct InformationCardView: View {
 
     private func memoryLine(_ titleKey: String, _ gb: Double) -> some View {
         HStack {
-            Text(L10n.string(titleKey, locale: locale))
+            Text(L10n.string(titleKey, language: appLanguage))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(String(format: "%.2f GB", gb))
@@ -145,7 +145,7 @@ struct InformationCardView: View {
 
     private var diskSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(L10n.string("card.disk.section", locale: locale))
+            Text(L10n.string("card.disk.section", language: appLanguage))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             HStack {
@@ -161,7 +161,7 @@ struct InformationCardView: View {
 
     private func diskMetric(_ titleKey: String, _ gb: Double) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(L10n.string(titleKey, locale: locale))
+            Text(L10n.string(titleKey, language: appLanguage))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             Text(String(format: "%.2f GB", gb))
@@ -173,10 +173,10 @@ struct InformationCardView: View {
     private var footer: some View {
         HStack(alignment: .bottom, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(L10n.string("card.credit.title", locale: locale))
+                Text(L10n.string("card.credit.title", language: appLanguage))
                     .font(.caption2.weight(.medium))
                     .foregroundStyle(.secondary)
-                Text(L10n.string("card.credit.detail", locale: locale))
+                Text(L10n.string("card.credit.detail", language: appLanguage))
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }
@@ -187,7 +187,7 @@ struct InformationCardView: View {
             Button {
                 NSApplication.shared.terminate(nil)
             } label: {
-                Text(L10n.string("card.quit", locale: locale))
+                Text(L10n.string("card.quit", language: appLanguage))
             }
             .keyboardShortcut("q", modifiers: .command)
         }
@@ -196,7 +196,7 @@ struct InformationCardView: View {
 }
 
 private struct MemoryPressureBar: View {
-    @Environment(\.locale) private var locale
+    @Environment(\.appLanguage) private var appLanguage
 
     var ratio: Double
 
@@ -205,7 +205,7 @@ private struct MemoryPressureBar: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
-            Text(L10n.string("card.memory.pressure", locale: locale))
+            Text(L10n.string("card.memory.pressure", language: appLanguage))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -223,7 +223,7 @@ private struct MemoryPressureBar: View {
             .frame(width: barColumnWidth, height: barTrackHeight)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(L10n.string("card.memory.pressure.a11y", locale: locale))
+        .accessibilityLabel(L10n.string("card.memory.pressure.a11y", language: appLanguage))
         .accessibilityValue(String(format: "%.0f%%", min(100, ratio * 100)))
     }
 
@@ -235,14 +235,14 @@ private struct MemoryPressureBar: View {
 }
 
 private struct CPUHistoryChart: View {
-    @Environment(\.locale) private var locale
+    @Environment(\.appLanguage) private var appLanguage
 
     var userSeries: [Double]
     var systemSeries: [Double]
 
     var body: some View {
         VStack(spacing: 4) {
-            Text(L10n.string("card.cpu.load", locale: locale))
+            Text(L10n.string("card.cpu.load", language: appLanguage))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)

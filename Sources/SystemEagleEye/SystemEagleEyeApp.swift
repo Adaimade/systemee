@@ -19,10 +19,12 @@ struct SystemEagleEyeApp: App {
             InformationCardView()
                 .environmentObject(metrics)
                 .environment(\.locale, resolvedLocale)
+                .environment(\.appLanguage, AppLanguage.from(storage: uiLanguageRaw))
         } label: {
             MenuBarTitleView()
                 .environmentObject(metrics)
                 .environment(\.locale, resolvedLocale)
+                .environment(\.appLanguage, AppLanguage.from(storage: uiLanguageRaw))
         }
         .menuBarExtraStyle(.window)
 
@@ -30,6 +32,7 @@ struct SystemEagleEyeApp: App {
             PreferencesView()
                 .environmentObject(metrics)
                 .environment(\.locale, resolvedLocale)
+                .environment(\.appLanguage, AppLanguage.from(storage: uiLanguageRaw))
         }
     }
 }

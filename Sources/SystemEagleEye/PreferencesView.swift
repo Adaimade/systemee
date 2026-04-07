@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @Environment(\.locale) private var locale
+    @Environment(\.appLanguage) private var appLanguage
     @EnvironmentObject private var metrics: SystemMetricsCollector
 
     @AppStorage(DisplayPreferences.Keys.barCPU, store: DisplayPreferences.suite) private var barCPU = true
@@ -20,60 +20,60 @@ struct PreferencesView: View {
             Form {
                 Section {
                     Picker(selection: $uiLanguageRaw) {
-                        Text(L10n.string("pref.language.system", locale: locale)).tag(AppLanguage.system.storageValue)
-                        Text(L10n.string("pref.language.en", locale: locale)).tag(AppLanguage.english.storageValue)
-                        Text(L10n.string("pref.language.zh_hant", locale: locale)).tag(AppLanguage.traditionalChinese.storageValue)
+                        Text(L10n.string("pref.language.system", language: appLanguage)).tag(AppLanguage.system.storageValue)
+                        Text(L10n.string("pref.language.en", language: appLanguage)).tag(AppLanguage.english.storageValue)
+                        Text(L10n.string("pref.language.zh_hant", language: appLanguage)).tag(AppLanguage.traditionalChinese.storageValue)
                     } label: {
-                        Text(L10n.string("pref.section.language", locale: locale))
+                        Text(L10n.string("pref.section.language", language: appLanguage))
                     }
                 }
 
                 Section {
                     Toggle(isOn: $barCPU) {
-                        Text(L10n.string("pref.toggle.bar.cpu", locale: locale))
+                        Text(L10n.string("pref.toggle.bar.cpu", language: appLanguage))
                     }
                     Toggle(isOn: $barMemory) {
-                        Text(L10n.string("pref.toggle.bar.memory", locale: locale))
+                        Text(L10n.string("pref.toggle.bar.memory", language: appLanguage))
                     }
                     Toggle(isOn: $barDisk) {
-                        Text(L10n.string("pref.toggle.bar.disk", locale: locale))
+                        Text(L10n.string("pref.toggle.bar.disk", language: appLanguage))
                     }
                 } header: {
-                    Text(L10n.string("pref.section.menubar", locale: locale))
+                    Text(L10n.string("pref.section.menubar", language: appLanguage))
                 }
                 Section {
                     Toggle(isOn: $cardCPU) {
-                        Text(L10n.string("pref.toggle.card.cpu", locale: locale))
+                        Text(L10n.string("pref.toggle.card.cpu", language: appLanguage))
                     }
                     Toggle(isOn: $cardMemory) {
-                        Text(L10n.string("pref.toggle.card.memory", locale: locale))
+                        Text(L10n.string("pref.toggle.card.memory", language: appLanguage))
                     }
                     Toggle(isOn: $cardDisk) {
-                        Text(L10n.string("pref.toggle.card.disk", locale: locale))
+                        Text(L10n.string("pref.toggle.card.disk", language: appLanguage))
                     }
                 } header: {
-                    Text(L10n.string("pref.section.card", locale: locale))
+                    Text(L10n.string("pref.section.card", language: appLanguage))
                 }
                 Section {
                     Picker(selection: $pollInterval) {
-                        Text(L10n.string("pref.poll.1s", locale: locale)).tag(1.0)
-                        Text(L10n.string("pref.poll.1_5s", locale: locale)).tag(1.5)
-                        Text(L10n.string("pref.poll.2s", locale: locale)).tag(2.0)
-                        Text(L10n.string("pref.poll.3s", locale: locale)).tag(3.0)
+                        Text(L10n.string("pref.poll.1s", language: appLanguage)).tag(1.0)
+                        Text(L10n.string("pref.poll.1_5s", language: appLanguage)).tag(1.5)
+                        Text(L10n.string("pref.poll.2s", language: appLanguage)).tag(2.0)
+                        Text(L10n.string("pref.poll.3s", language: appLanguage)).tag(3.0)
                     } label: {
-                        Text(L10n.string("pref.picker.poll", locale: locale))
+                        Text(L10n.string("pref.picker.poll", language: appLanguage))
                     }
                     .onChange(of: pollInterval) { _, new in
                         metrics.startPolling(interval: new)
                     }
                 } header: {
-                    Text(L10n.string("pref.section.update", locale: locale))
+                    Text(L10n.string("pref.section.update", language: appLanguage))
                 }
             }
             .formStyle(.grouped)
             .tabItem {
                 Label {
-                    Text(L10n.string("pref.tab.display", locale: locale))
+                    Text(L10n.string("pref.tab.display", language: appLanguage))
                 } icon: {
                     Image(systemName: "slider.horizontal.3")
                 }
@@ -81,7 +81,7 @@ struct PreferencesView: View {
 
             Form {
                 Section {
-                    Text(L10n.string("pref.about.body", locale: locale))
+                    Text(L10n.string("pref.about.body", language: appLanguage))
                         .font(.callout)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -91,7 +91,7 @@ struct PreferencesView: View {
             .formStyle(.grouped)
             .tabItem {
                 Label {
-                    Text(L10n.string("pref.tab.about", locale: locale))
+                    Text(L10n.string("pref.tab.about", language: appLanguage))
                 } icon: {
                     Image(systemName: "info.circle")
                 }

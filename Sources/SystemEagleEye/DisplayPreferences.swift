@@ -11,6 +11,7 @@ enum DisplayPreferences {
         static let cardMemory = "pref.card.memory"
         static let cardDisk = "pref.card.disk"
         static let pollInterval = "pref.pollInterval"
+        static let uiLanguage = "pref.uiLanguage"
     }
 
     static func registerDefaults() {
@@ -21,7 +22,8 @@ enum DisplayPreferences {
             Keys.cardCPU: true,
             Keys.cardMemory: true,
             Keys.cardDisk: true,
-            Keys.pollInterval: 2.0
+            Keys.pollInterval: 2.0,
+            Keys.uiLanguage: AppLanguage.system.storageValue
         ])
     }
 }

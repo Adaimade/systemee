@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MenuBarTitleView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.locale) private var locale
     @EnvironmentObject private var metrics: SystemMetricsCollector
 
     @AppStorage(DisplayPreferences.Keys.barCPU, store: DisplayPreferences.suite) private var barCPU = true
@@ -16,8 +17,8 @@ struct MenuBarTitleView: View {
             .lineLimit(1)
             .minimumScaleFactor(TypeScaling.menuBarMinimumScale(for: dynamicTypeSize))
             .allowsTightening(true)
-            .help("System Eagle Eye")
-            .accessibilityLabel("System Eagle Eye，\(titleText)")
+            .help(L10n.string("help.app", locale: locale))
+            .accessibilityLabel(L10n.format("a11y.menubar", locale: locale, titleText))
             .task {
                 metrics.startPolling(interval: pollInterval)
             }
@@ -30,16 +31,16 @@ struct MenuBarTitleView: View {
         var parts: [String] = []
         if barCPU {
             let busy = max(0, min(100, 100 - metrics.cpuIdlePercent))
-            parts.append(String(format: "CPU %.0f%%", busy))
+            parts.append(L10n.format("menu.cpu_format", locale: locale, busy))
         }
         if barMemory {
-            parts.append(String(format: "RAM %.0f%%", metrics.memoryPressureRatio * 100))
+            parts.append(L10n.format("menu.ram_format", locale: locale, metrics.memoryPressureRatio * 100))
         }
         if barDisk {
-            parts.append(String(format: "空間 %.0fGB", metrics.diskFreeGB))
+            parts.append(L10n.format("menu.disk_format", locale: locale, metrics.diskFreeGB))
         }
         if parts.isEmpty {
-            return "Eagle Eye"
+            return L10n.string("menu.fallback_title", locale: locale)
         }
         return parts.joined(separator: " · ")
     }

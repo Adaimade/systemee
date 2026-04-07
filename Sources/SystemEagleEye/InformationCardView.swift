@@ -4,6 +4,7 @@ import SwiftUI
 struct InformationCardView: View {
     @Environment(\.openSettings) private var openSettings
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.locale) private var locale
     @EnvironmentObject private var metrics: SystemMetricsCollector
 
     @AppStorage(DisplayPreferences.Keys.cardCPU, store: DisplayPreferences.suite) private var cardCPU = true
@@ -50,8 +51,10 @@ struct InformationCardView: View {
             Text("System Eagle Eye")
                 .font(.headline)
             Spacer()
-            Button("偏好設定…") {
+            Button {
                 openSettings()
+            } label: {
+                Text(L10n.string("card.prefs", locale: locale))
             }
             .keyboardShortcut(",", modifiers: .command)
         }
@@ -61,11 +64,11 @@ struct InformationCardView: View {
     private var cpuSection: some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 8) {
-                metricRow(title: "核心／系統", value: metrics.cpuSystemPercent, color: .red)
-                metricRow(title: "使用者", value: metrics.cpuUserPercent, color: Color(red: 0.45, green: 0.78, blue: 1))
-                metricRow(title: "閒置", value: metrics.cpuIdlePercent, color: .primary)
-                countRow(title: "執行緒", value: metrics.threadCount)
-                countRow(title: "程序", value: metrics.processCount)
+                metricRow(titleKey: "card.cpu.system", value: metrics.cpuSystemPercent, color: .red)
+                metricRow(titleKey: "card.cpu.user", value: metrics.cpuUserPercent, color: Color(red: 0.45, green: 0.78, blue: 1))
+                metricRow(titleKey: "card.cpu.idle", value: metrics.cpuIdlePercent, color: .primary)
+                countRow(labelKey: "card.cpu.threads_label", value: metrics.threadCount)
+                countRow(labelKey: "card.cpu.processes_label", value: metrics.processCount)
             }
             .fixedSize(horizontal: true, vertical: false)
 
@@ -79,9 +82,9 @@ struct InformationCardView: View {
         .padding(.vertical, 10)
     }
 
-    private func metricRow(title: String, value: Double, color: Color) -> some View {
+    private func metricRow(titleKey: String, value: Double, color: Color) -> some View {
         HStack {
-            Text(title)
+            Text(L10n.string(titleKey, locale: locale))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(String(format: "%.2f%%", value))
@@ -91,9 +94,9 @@ struct InformationCardView: View {
         .font(.caption)
     }
 
-    private func countRow(title: String, value: Int) -> some View {
+    private func countRow(labelKey: String, value: Int) -> some View {
         HStack {
-            Text("\(title)：")
+            Text(L10n.string(labelKey, locale: locale))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(value, format: .number.grouping(.automatic))
@@ -107,21 +110,21 @@ struct InformationCardView: View {
             MemoryPressureBar(ratio: metrics.memoryPressureRatio)
 
             VStack(alignment: .leading, spacing: 6) {
-                memoryLine("實體記憶體", metrics.physicalMemoryGB)
-                memoryLine("記憶體用量", metrics.memoryUsedGB)
-                memoryLine("快取的檔案", metrics.memoryCachedFilesGB)
-                memoryLine("使用的交換檔", metrics.swapUsedGB)
+                memoryLine("card.memory.physical", metrics.physicalMemoryGB)
+                memoryLine("card.memory.used", metrics.memoryUsedGB)
+                memoryLine("card.memory.cached", metrics.memoryCachedFilesGB)
+                memoryLine("card.memory.swap", metrics.swapUsedGB)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .layoutPriority(1)
 
             VStack(alignment: .leading, spacing: 6) {
-                Text("用量組成")
+                Text(L10n.string("card.memory.breakdown", locale: locale))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
-                memoryLine("App 記憶體", metrics.memoryAppGB)
-                memoryLine("連線／核心", metrics.memoryWiredGB)
-                memoryLine("已壓縮", metrics.memoryCompressedGB)
+                memoryLine("card.memory.app", metrics.memoryAppGB)
+                memoryLine("card.memory.wired", metrics.memoryWiredGB)
+                memoryLine("card.memory.compressed", metrics.memoryCompressedGB)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .layoutPriority(1)
@@ -130,9 +133,9 @@ struct InformationCardView: View {
         .font(.caption)
     }
 
-    private func memoryLine(_ title: String, _ gb: Double) -> some View {
+    private func memoryLine(_ titleKey: String, _ gb: Double) -> some View {
         HStack {
-            Text(title)
+            Text(L10n.string(titleKey, locale: locale))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(String(format: "%.2f GB", gb))
@@ -142,23 +145,23 @@ struct InformationCardView: View {
 
     private var diskSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("空間（啟動卷宗）")
+            Text(L10n.string("card.disk.section", locale: locale))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             HStack {
-                diskMetric("總容量", metrics.diskTotalGB)
+                diskMetric("card.disk.total", metrics.diskTotalGB)
                 Spacer()
-                diskMetric("已使用", metrics.diskUsedGB)
+                diskMetric("card.disk.used", metrics.diskUsedGB)
                 Spacer()
-                diskMetric("可用", metrics.diskFreeGB)
+                diskMetric("card.disk.free", metrics.diskFreeGB)
             }
         }
         .padding(.vertical, 10)
     }
 
-    private func diskMetric(_ title: String, _ gb: Double) -> some View {
+    private func diskMetric(_ titleKey: String, _ gb: Double) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(title)
+            Text(L10n.string(titleKey, locale: locale))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             Text(String(format: "%.2f GB", gb))
@@ -170,10 +173,10 @@ struct InformationCardView: View {
     private var footer: some View {
         HStack(alignment: .bottom, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(DesignCredit.attributionTitle)
+                Text(L10n.string("card.credit.title", locale: locale))
                     .font(.caption2.weight(.medium))
                     .foregroundStyle(.secondary)
-                Text(DesignCredit.attributionDetail)
+                Text(L10n.string("card.credit.detail", locale: locale))
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }
@@ -181,8 +184,10 @@ struct InformationCardView: View {
 
             Spacer(minLength: 8)
 
-            Button("結束 System Eagle Eye") {
+            Button {
                 NSApplication.shared.terminate(nil)
+            } label: {
+                Text(L10n.string("card.quit", locale: locale))
             }
             .keyboardShortcut("q", modifiers: .command)
         }
@@ -190,22 +195,17 @@ struct InformationCardView: View {
     }
 }
 
-// MARK: - 設計者資訊（可修改為你的名稱、團隊或連結說明）
-private enum DesignCredit {
-    static let attributionTitle = "Adaimade 設計與開發"
-    static let attributionDetail = "System Eagle Eye 專案 · 2026"
-}
-
 private struct MemoryPressureBar: View {
+    @Environment(\.locale) private var locale
+
     var ratio: Double
 
-    /// 與右側兩欄文字區總高度接近，避免左側「過短、右下留白」的失衡感。
     private let barColumnWidth: CGFloat = 72
     private let barTrackHeight: CGFloat = 106
 
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
-            Text("記憶體壓力")
+            Text(L10n.string("card.memory.pressure", locale: locale))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -223,7 +223,7 @@ private struct MemoryPressureBar: View {
             .frame(width: barColumnWidth, height: barTrackHeight)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("記憶體壓力")
+        .accessibilityLabel(L10n.string("card.memory.pressure.a11y", locale: locale))
         .accessibilityValue(String(format: "%.0f%%", min(100, ratio * 100)))
     }
 
@@ -235,12 +235,14 @@ private struct MemoryPressureBar: View {
 }
 
 private struct CPUHistoryChart: View {
+    @Environment(\.locale) private var locale
+
     var userSeries: [Double]
     var systemSeries: [Double]
 
     var body: some View {
         VStack(spacing: 4) {
-            Text("CPU 負載")
+            Text(L10n.string("card.cpu.load", locale: locale))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)

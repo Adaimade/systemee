@@ -1,0 +1,56 @@
+/* Preferences */
+"pref.tab.display" = "Display";
+"pref.tab.about" = "About";
+"pref.section.menubar" = "Menu bar";
+"pref.toggle.bar.cpu" = "CPU usage (utilization)";
+"pref.toggle.bar.memory" = "Memory pressure";
+"pref.toggle.bar.disk" = "Free space (GB)";
+"pref.section.card" = "Info card sections";
+"pref.toggle.card.cpu" = "CPU (chart, threads & processes)";
+"pref.toggle.card.memory" = "Memory details";
+"pref.toggle.card.disk" = "Disk space (info card)";
+"pref.section.update" = "Update interval";
+"pref.picker.poll" = "Polling interval";
+"pref.poll.1s" = "~1 second";
+"pref.poll.1_5s" = "~1.5 seconds";
+"pref.poll.2s" = "~2 seconds";
+"pref.poll.3s" = "~3 seconds";
+"pref.section.language" = "Interface language";
+"pref.language.system" = "Follow System";
+"pref.language.en" = "English";
+"pref.language.zh_hant" = "Traditional Chinese";
+"pref.about.body" = "Figures come from local Mach, vm, and volume APIs. They may differ slightly from Activity Monitor; for everyday reference only.";
+
+/* Info card */
+"card.prefs" = "Preferences…";
+"card.cpu.system" = "System";
+"card.cpu.user" = "User";
+"card.cpu.idle" = "Idle";
+"card.cpu.threads_label" = "Threads:";
+"card.cpu.processes_label" = "Processes:";
+"card.memory.physical" = "Physical memory";
+"card.memory.used" = "Memory used";
+"card.memory.cached" = "Cached files";
+"card.memory.swap" = "Swap used";
+"card.memory.breakdown" = "Usage breakdown";
+"card.memory.app" = "App memory";
+"card.memory.wired" = "Wired / kernel";
+"card.memory.compressed" = "Compressed";
+"card.disk.section" = "Space (boot volume)";
+"card.disk.total" = "Total";
+"card.disk.used" = "Used";
+"card.disk.free" = "Free";
+"card.quit" = "Quit System Eagle Eye";
+"card.credit.title" = "Designed and developed by Adaimade";
+"card.credit.detail" = "System Eagle Eye · 2026";
+"card.memory.pressure" = "Memory pressure";
+"card.memory.pressure.a11y" = "Memory pressure";
+"card.cpu.load" = "CPU load";
+
+/* Menu bar */
+"menu.cpu_format" = "CPU %.0f%%";
+"menu.ram_format" = "RAM %.0f%%";
+"menu.disk_format" = "Disk %.0f GB";
+"menu.fallback_title" = "Eagle Eye";
+"help.app" = "System Eagle Eye";
+"a11y.menubar" = "System Eagle Eye, %@";

@@ -1,0 +1,56 @@
+/* Preferences */
+"pref.tab.display" = "顯示項目";
+"pref.tab.about" = "說明";
+"pref.section.menubar" = "選單列顯示";
+"pref.toggle.bar.cpu" = "CPU 使用率（忙碌度）";
+"pref.toggle.bar.memory" = "記憶體壓力比例";
+"pref.toggle.bar.disk" = "可用空間（GB）";
+"pref.section.card" = "資訊卡區塊";
+"pref.toggle.card.cpu" = "CPU（負載圖表、執行緒與程序）";
+"pref.toggle.card.memory" = "記憶體詳情";
+"pref.toggle.card.disk" = "空間（資訊卡）";
+"pref.section.update" = "更新頻率";
+"pref.picker.poll" = "輪詢間隔";
+"pref.poll.1s" = "約 1 秒";
+"pref.poll.1_5s" = "約 1.5 秒";
+"pref.poll.2s" = "約 2 秒";
+"pref.poll.3s" = "約 3 秒";
+"pref.section.language" = "介面語言";
+"pref.language.system" = "跟隨系統";
+"pref.language.en" = "English";
+"pref.language.zh_hant" = "繁體中文";
+"pref.about.body" = "數值來自本機 Mach／vm／卷宗 API，與「活動監視器」在計算方式上可能略有差異，僅供日常參考。";
+
+/* Info card */
+"card.prefs" = "偏好設定…";
+"card.cpu.system" = "核心／系統";
+"card.cpu.user" = "使用者";
+"card.cpu.idle" = "閒置";
+"card.cpu.threads_label" = "執行緒：";
+"card.cpu.processes_label" = "程序：";
+"card.memory.physical" = "實體記憶體";
+"card.memory.used" = "記憶體用量";
+"card.memory.cached" = "快取的檔案";
+"card.memory.swap" = "使用的交換檔";
+"card.memory.breakdown" = "用量組成";
+"card.memory.app" = "App 記憶體";
+"card.memory.wired" = "連線／核心";
+"card.memory.compressed" = "已壓縮";
+"card.disk.section" = "空間（啟動卷宗）";
+"card.disk.total" = "總容量";
+"card.disk.used" = "已使用";
+"card.disk.free" = "可用";
+"card.quit" = "結束 System Eagle Eye";
+"card.credit.title" = "Adaimade 設計與開發";
+"card.credit.detail" = "System Eagle Eye 專案 · 2026";
+"card.memory.pressure" = "記憶體壓力";
+"card.memory.pressure.a11y" = "記憶體壓力";
+"card.cpu.load" = "CPU 負載";
+
+/* Menu bar */
+"menu.cpu_format" = "CPU %.0f%%";
+"menu.ram_format" = "記憶體 %.0f%%";
+"menu.disk_format" = "空間 %.0f GB";
+"menu.fallback_title" = "Eagle Eye";
+"help.app" = "System Eagle Eye";
+"a11y.menubar" = "System Eagle Eye，%@";

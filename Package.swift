@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "SystemEagleEye",
+    defaultLocalization: "en",
     platforms: [.macOS(.v14)],
     products: [
         .executable(name: "SystemEagleEye", targets: ["SystemEagleEye"])
@@ -11,7 +12,8 @@ let package = Package(
         .executableTarget(
             name: "SystemEagleEye",
             path: "Sources/SystemEagleEye",
-            exclude: ["Info.plist"]
+            exclude: ["Info.plist"],
+            resources: [.process("Resources")]
         )
     ]
 )

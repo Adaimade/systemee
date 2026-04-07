@@ -34,7 +34,7 @@ This creates **`System Eagle Eye.app`** at the repo root and applies `Supporting
 ./scripts/package_dmg.sh
 ```
 
-Runs `package_app.sh`, then builds a compressed disk image **`System-Eagle-Eye-<version>.dmg`** at the repo root. The volume includes the app plus an **Applications** shortcut for drag-and-drop install. Uses only macOS **`hdiutil`** (no extra tools).
+Runs `package_app.sh`, then builds a compressed disk image **`System-Eagle-Eye-<version>.dmg`** at the repo root. The volume includes the app plus an **Applications** shortcut for drag-and-drop install. **`AppIcon.icns`** is copied into the image as **`.VolumeIcon.icns`** so the **mounted volume** shows the same icon as the app. On a normal Mac login session, the script also asks **Finder** to set the **`.dmg` file’s** icon to match the app (if that step fails, e.g. on a headless build, the disk image file may keep the generic icon until you run the script locally or set the icon manually).
 
 ## First launch and security
 

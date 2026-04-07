@@ -34,7 +34,7 @@ swift build -c release
 ./scripts/package_dmg.sh
 ```
 
-會先執行 `package_app.sh`，再在專案根目錄產生壓縮映像檔 **`System-Eagle-Eye-<版本號>.dmg`**。映像內含 App 與指向 **應用程式** 資料夾的捷徑，方便拖放安裝。僅使用 macOS 內建 **`hdiutil`**，無需額外工具。
+會先執行 `package_app.sh`，再在專案根目錄產生壓縮映像檔 **`System-Eagle-Eye-<版本號>.dmg`**。映像內含 App 與指向 **應用程式** 資料夾的捷徑，方便拖放安裝。會把 **`AppIcon.icns`** 放進映像根目錄為 **`.VolumeIcon.icns`**，**掛載後的卷宗**在 Finder 會顯示與 App 相同的圖示。一般在本機 Mac 登入下，腳本也會請 **Finder** 把 **`.dmg` 檔案本身**的圖示設成與 App 相同（若環境無 Finder／自動化失敗，例如無介面建置，`.dmg` 檔可能仍為預設磁碟圖示，可在本機再執行一次腳本或手動指定圖示）。
 
 ## 首次執行與安全性
 
